@@ -214,77 +214,34 @@
 
 <script>
 
-//look up the required attribute
-function validatePage() {
-    var inputName = document.forms["inputForm"]["name"].value;
-    var inputPhoto = document.forms["inputForm"]["photo"].value;
-    if ((inputName.length == 0) || (inputPhoto.length == 0)) {
-        console.log("Fill out");
-    } else {
-        $("#myModal").modal("toggle")
+$("#submit").on("click", function(event) {
+    event.preventDefault();
+    var scoresArray = [];
+    scoresArray.push(($("input[name='answer1']:checked").val()), ($("input[name='answer2']:checked").val()), ($("input[name='answer3']:checked").val()), ($("input[name='answer4']:checked").val()), ($("input[name='answer5']:checked").val()), ($("input[name='answer6']:checked").val()), ($("input[name='answer7']:checked").val()), ($("input[name='answer8']:checked").val()), ($("input[name='answer9']:checked").val()), ($("input[name='answer10']:checked").val()));
+    var newFriend = {
+        name: $("#name").val().trim(),
+        photo: $("#photo").val().trim(),
+        scores: scoresArray
     };
-}
+    console.log(scoresArray);
 
-$("#submit").click(function(){
-    validatePage();
-});
-    // // Capture the form inputs
-    // $("#submit").on("click", function(event) {
-    // event.preventDefault();
+    $.post("/api/friends", newFriend)
+})
 
-    // // Form validation
-    // function validateForm() {
-    //     var isValid = true;
-    //     $(".form-control").each(function() {
-    //     if ($(this).val() === "") {
-    //         isValid = false;
-    //     }
-    //     });
+//look up the required attribute
+// function validatePage() {
+//     var inputName = document.forms["inputForm"]["name"].value;
+//     var inputPhoto = document.forms["inputForm"]["photo"].value;
+//     if ((inputName.length == 0) || (inputPhoto.length == 0)) {
+//         console.log("Fill out");
+//     } else {
+//         $("#myModal").modal("toggle")
+//     };
+// }
 
-    //     $(".chosen-select").each(function() {
-
-    //     if ($(this).val() === "") {
-    //         isValid = false;
-    //     }
-    //     });
-    //     return isValid;
-    // }
-
-    // // If all required fields are filled
-    // if (validateForm()) {
-    //     // Create an object for the user"s data
-    //     var userData = {
-    //     name: $("#name").val(),
-    //     photo: $("#photo").val(),
-    //     scores: [
-    //         $("#q1").val(),
-    //         $("#q2").val(),
-    //         $("#q3").val(),
-    //         $("#q4").val(),
-    //         $("#q5").val(),
-    //         $("#q6").val(),
-    //         $("#q7").val(),
-    //         $("#q8").val(),
-    //         $("#q9").val(),
-    //         $("#q10").val()
-    //     ]
-    //     };
-
-    //     // AJAX post the data to the friends API.
-    //     $.post("/api/friends", userData, function(data) {
-
-    //     // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-    //     $("#match-name").text(data.name);
-    //     $("#match-img").attr("src", data.photo);
-
-    //     // Show the modal with the best match
-    //     $("#results-modal").modal("toggle");
-
-    //     });
-    // } else {
-    //     alert("Please fill out all fields before submitting!");
-    // }
-    // });
+// $("#submit").click(function(){
+//     validatePage();
+// });
 
 </script>
 </body>
