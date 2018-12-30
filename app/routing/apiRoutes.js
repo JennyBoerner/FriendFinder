@@ -32,18 +32,5 @@ module.exports = function(app) {
         // $("div.modal-body").html("test");
         // $("#myModal").modal("toggle")
         friends.push(newFriend);
-
-        //Loop through all friends and each score. Calculate difference score and add that. Lowest total difference return as matching friend.
-        //write a function that calulates total difference. Loop through and call that function.
-
-        // Get the survey data: req.body
-        // For each friend
-        // Calculate the difference between their survey response score and ours
-        // Keep a running sum of the total difference
-        // if the total difference for the current friend is less than the lowest difference
-        // must be a new best friend
-        // set best friend attributes, name, photo, score, etc
-        // response with friend data response.json(object of values of best friend)
-        // friends.push(req.body);
     })
 }
